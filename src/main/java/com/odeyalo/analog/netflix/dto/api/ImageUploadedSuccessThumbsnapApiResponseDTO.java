@@ -1,10 +1,7 @@
 package com.odeyalo.analog.netflix.dto.api;
 
-public class ThumbsnapImageRemoteStorageResponseDTO {
+public class ImageUploadedSuccessThumbsnapApiResponseDTO extends GenericThumbsnapMessageDTO {
     private ImageUploadedSuccessfulDTO data;
-    private boolean success;
-    private int status;
-
 
     public ImageUploadedSuccessfulDTO getData() {
         return data;
