@@ -3,6 +3,7 @@ package com.odeyalo.analog.netflix.config;
 import com.odeyalo.analog.netflix.dto.ImageResizeDTO;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -32,6 +33,7 @@ public class ApacheKafkaProducerConfiguration {
         config.put(ProducerConfig.LINGER_MS_CONFIG, 10);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(ProducerConfig.RECONNECT_BACKOFF_MS_CONFIG, "10000");
         return config;
     }
 }

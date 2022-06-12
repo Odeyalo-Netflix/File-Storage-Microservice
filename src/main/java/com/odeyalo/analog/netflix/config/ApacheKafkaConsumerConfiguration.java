@@ -53,6 +53,7 @@ public class ApacheKafkaConsumerConfiguration {
         config.put(ConsumerConfig.GROUP_ID_CONFIG, APACHE_KAFKA_MESSAGE_BROKER_GROUP_ID_CONFIG);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(ConsumerConfig.RECONNECT_BACKOFF_MS_CONFIG, 10000);
         return config;
     }
 }
