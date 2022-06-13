@@ -22,6 +22,7 @@ import static java.lang.Long.min;
 public class HttpVideoStreamingService implements VideoStreamingService<ResponseEntity<ResourceRegion>> {
     private final VideoRepository videoRepository;
     private static final Long CHUNK_SIZE = 1000000L;
+
     @Autowired
     public HttpVideoStreamingService(VideoRepository videoRepository) {
         this.videoRepository = videoRepository;
