@@ -4,6 +4,7 @@ import com.odeyalo.analog.netflix.service.support.FileNameGenerator;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,7 +16,8 @@ import java.nio.file.Path;
 public class LocalFileStorage implements FileStorage {
     private final FileNameGenerator fileNameGenerator;
     private final Logger logger = LoggerFactory.getLogger(LocalFileStorage.class);
-    private static final String FOLDER_NAME = "D:\\videos\\";
+    @Value("${app.file.saving.default}")
+    private String FOLDER_NAME;
 
     public LocalFileStorage(FileNameGenerator fileNameGenerator) {
         this.fileNameGenerator = fileNameGenerator;
