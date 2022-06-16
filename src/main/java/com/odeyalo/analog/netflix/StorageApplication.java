@@ -8,8 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
-@EnableKafka
-@EnableEurekaClient
+//@EnableEurekaClient
 public class StorageApplication {
 
     public static void main(String[] args) {
