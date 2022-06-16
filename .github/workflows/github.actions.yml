@@ -1,12 +1,9 @@
-name: file-storage
-on: [pull_request]
-
+name: docker-compose-actions-workflow
+on: push
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build docker containers
-        run: entrypoint.sh
-      - name: Build docker compose
+      - name: Build the stack
         run: docker-compose up -d
