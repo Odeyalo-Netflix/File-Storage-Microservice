@@ -1,9 +1,12 @@
-name: docker-compose-actions-workflow
+name: file-storage
 on: push
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build the stack
+      - name: Build docker containers
+        run: chmod +x entrypoint.sh ./entrypoint.sh
+
+      - name: Build docker compose
         run: docker-compose up -d
