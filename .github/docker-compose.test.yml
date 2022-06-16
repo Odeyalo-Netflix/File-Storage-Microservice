@@ -29,7 +29,7 @@ services:
       db:
         condition: service_healthy
     env_file:
-      - local.env
+      - test.env
     volumes:
       - "./maven-rep:/root/.m2"
 
