@@ -6,8 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build docker containers
-        run: chmod +x .${GITHUB_WORKSPACE}/entrypoint.sh
-        ${GITHUB_WORKSPACE}/entrypoint.sh
+        run: chmod +x .${GITHUB_WORKSPACE}/entrypoint.sh ${GITHUB_WORKSPACE}/entrypoint.sh
 
       - name: Build docker compose
         run: docker-compose up -d
