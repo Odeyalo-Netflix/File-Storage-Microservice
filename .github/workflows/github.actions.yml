@@ -10,5 +10,3 @@ jobs:
       - run: entrypoint.sh
       - name: Build docker compose
         run: docker-compose up -d
-#      - name: Test
-#        run: docker run --network container:webapp-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:5000/
