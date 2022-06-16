@@ -1,5 +1,7 @@
-FROM ubuntu:20.04
+FROM maven:3.8.5-jdk-11-slim
 
-COPY entrypoint.sh /entrypoint.sh
+WORKDIR file-storage
+COPY . .
 
-#ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["mvn", "spring-boot:run"]
+

@@ -1,5 +1,8 @@
 #!/bin/sh
+echo "Remove all containers"
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 
-echo "Hello $1"
-time=$(date)
-echo "::set-output name=time::$time"
+echo "Building Dockerfile"
+
+docker image build -t "filestorage"

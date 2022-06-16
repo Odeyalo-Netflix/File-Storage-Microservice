@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Build docker containers
+      - run: entrypoint.sh
       - name: Build docker compose
         run: docker-compose up -d
 #      - name: Test
