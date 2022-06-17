@@ -6,5 +6,3 @@ WORKDIR /app
 
 ENTRYPOINT ["mvn", "install"]
 
-#ENTRYPOINT ["tail", "install"]
-
