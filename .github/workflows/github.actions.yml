@@ -10,5 +10,4 @@ jobs:
       - name: current directory
         run: pwd
       - name: Build docker compose
-        working-directory: /home/runner/work/file-storage-microservice/file-storage-microservice/
-        run: docker-compose -f ${GITHUB_WORKSPACE}/.github/docker-compose.test.yml up -d
+        run: docker-compose -f ${GITHUB_WORKSPACE}/.github/docker-compose.test.yml up
