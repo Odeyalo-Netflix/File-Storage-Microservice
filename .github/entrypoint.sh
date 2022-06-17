@@ -8,9 +8,3 @@ echo "Building Dockerfile"
 
 docker build -t file-storage-test-image ./../
 
-
-echo "Starting docker-compose file"
-
-cd ..
-
-docker-compose -f ./docker-compose.test.yml up
