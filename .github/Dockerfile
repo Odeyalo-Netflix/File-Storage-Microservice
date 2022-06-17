@@ -1,7 +1,10 @@
 FROM maven:3.8.5-jdk-11-slim
 
-WORKDIR file-storage
 COPY . /app
 
-ENTRYPOINT ["mvn", "install"]
+WORKDIR /app
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]
+
+#ENTRYPOINT ["tail", "install"]
 

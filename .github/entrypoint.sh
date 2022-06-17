@@ -6,8 +6,11 @@ echo "Setting up folders..."
 mkdir -p /odeyalo/dev/microservices/filestorage/videos/
 echo "Building Dockerfile"
 
-docker build -t "filestorage" ./../
+docker build -t "file-storage" ./../
 
+echo "Starting Dockerfile 'file-storage'"
+
+docker run file-storage
 
 echo "Starting docker-compose file"
 

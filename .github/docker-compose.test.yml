@@ -19,21 +19,6 @@ services:
       - THUMBSNAP_API_KEY=00001b7375a93d52546094c70b9630cb
       - VIDEO_SAVING_PATH=/odeyalo/dev/microservices/filestorage/videos/
 
-  auth-microservice:
-    ports:
-      - "8761:8761"
-    build:
-      context: .
-    container_name: auth-microservice
-    depends_on:
-      db:
-        condition: service_healthy
-    env_file:
-      - test.env
-    volumes:
-      - "./maven-rep:/root/.m2"
-
-
   db:
     image: 'postgres:13.1-alpine'
     container_name: db
