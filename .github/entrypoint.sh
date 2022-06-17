@@ -6,12 +6,11 @@ echo "Setting up folders..."
 mkdir -p /odeyalo/dev/microservices/filestorage/videos/
 echo "Building Dockerfile"
 
-docker build -t "file-storage" ./../
+docker build -t file-storage-test-image ./../
 
-echo "Starting Dockerfile 'file-storage'"
-
-docker run file-storage
 
 echo "Starting docker-compose file"
 
-docker-compose run -f docker-compose.test.yml
+cd ..
+
+docker-compose -f .github/docker-compose.test.yml up

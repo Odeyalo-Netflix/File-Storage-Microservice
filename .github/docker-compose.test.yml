@@ -1,11 +1,13 @@
-version: '2.2'
+version: '3.8'
 services:
   file-storage:
     ports:
       - "9000:9000"
+    image: file-storage-test-image
     build:
       context: .
-    container_name: file-storage
+      dockerfile: .github/Dockerfile.test
+    container_name: file-storage-test
     depends_on:
       db:
         condition: service_healthy
