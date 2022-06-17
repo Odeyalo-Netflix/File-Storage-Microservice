@@ -10,5 +10,5 @@ jobs:
       - name: directory
         run: echo ${GITHUB_WORKSPACE}
       - name: Build docker compose
-        working-directory: ${GITHUB_WORKSPACE}
         run: docker-compose -f ${GITHUB_WORKSPACE}/.github/docker-compose.test.yml up -d
+        working-directory: ${GITHUB_WORKSPACE}
