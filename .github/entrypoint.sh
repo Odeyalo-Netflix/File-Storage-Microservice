@@ -13,4 +13,4 @@ echo "Starting docker-compose file"
 
 cd ..
 
-docker-compose -f .github/docker-compose.test.yml up
+docker-compose -f ./docker-compose.test.yml up
