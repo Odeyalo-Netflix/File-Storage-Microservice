@@ -4,7 +4,7 @@ COPY . /app
 
 WORKDIR /app
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["mvn", "install"]
 
 #ENTRYPOINT ["tail", "install"]
 
