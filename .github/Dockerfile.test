@@ -4,5 +4,7 @@ COPY . /app
 
 WORKDIR /app
 
+RUN ls
+
 CMD ["mvn", "install"]
 
