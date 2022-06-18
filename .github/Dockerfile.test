@@ -4,5 +4,5 @@ COPY . /app
 
 WORKDIR /app
 
-ENTRYPOINT ["mvn", "install"]
+CMD ["mvn", "install"]
 
