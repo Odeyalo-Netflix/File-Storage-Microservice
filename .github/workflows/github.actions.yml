@@ -5,11 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build docker images
-        run: docker build -t file-storage-test-image -f /.github/file-storage-test-image .
       - name: current directory
         run: pwd
       - name: files
         run: ls
+      - name: Build docker images
+        run: docker build -t file-storage-test-image -f .github/file-storage-test-image .
+
       - name: Build docker compose
         run: docker-compose -f ${GITHUB_WORKSPACE}/.github/docker-compose.test.yml up --abort-on-container-exit
