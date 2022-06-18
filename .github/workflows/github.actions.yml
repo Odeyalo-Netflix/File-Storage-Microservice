@@ -9,5 +9,7 @@ jobs:
         run: chmod +x ${GITHUB_WORKSPACE}/.github/entrypoint.sh ${GITHUB_WORKSPACE}/.github/entrypoint.sh
       - name: current directory
         run: pwd
+      - name: files
+        run: ls
       - name: Build docker compose
         run: docker-compose -f ${GITHUB_WORKSPACE}/.github/docker-compose.test.yml up --abort-on-container-exit
