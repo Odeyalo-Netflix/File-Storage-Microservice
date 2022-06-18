@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build docker containers
-        run: docker build -t /.github/file-storage-test-image .
+      - name: Build docker images
+        run: docker build -t file-storage-test-image /.github/file-storage-test-image .
       - name: current directory
         run: pwd
       - name: files
