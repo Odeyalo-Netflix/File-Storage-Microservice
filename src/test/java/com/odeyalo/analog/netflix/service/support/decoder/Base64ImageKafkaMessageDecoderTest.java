@@ -18,12 +18,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Base64ImageKafkaMessageDecoderTest {
     Base64ImageKafkaMessageDecoder decoder = new Base64ImageKafkaMessageDecoder();
-    private static final String CURRENT_PATH = Paths.get(".").toAbsolutePath().normalize().toString();
-    private static final String JPG_FILE_PATH = CURRENT_PATH + "\\src\\test\\test-files\\jpg-test.jpg";
-    private static final String SAVE_FILE_DIRECTORY = CURRENT_PATH + "\\src\\test\\test-files\\saved\\";
+    private static final String CURRENT_PATH = System.getProperty("user.dir");
+    private static final String JPG_FILE_PATH = new StringBuilder(CURRENT_PATH)
+            .append(File.separator)
+            .append("src")
+            .append(File.separator)
+            .append("test")
+            .append(File.separator)
+            .append("test-files")
+            .append(File.separator)
+            .append("jpg-test.jpg").toString();
+    private static final String SAVE_FILE_DIRECTORY = new StringBuilder(CURRENT_PATH)
+            .append(File.separator)
+            .append("src")
+            .append(File.separator)
+            .append("test")
+            .append(File.separator)
+            .append("test-files")
+            .append(File.separator)
+            .append("saved")
+            .append(File.separator)
+            .toString();
+
 
     @BeforeAll
     static void beforeAll() {
+        System.out.println("Current directory: " + CURRENT_PATH);
         File file = new File(SAVE_FILE_DIRECTORY);
         file.mkdir();
     }
