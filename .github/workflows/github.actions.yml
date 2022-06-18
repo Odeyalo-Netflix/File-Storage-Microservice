@@ -10,4 +10,4 @@ jobs:
       - name: current directory
         run: pwd
       - name: Build docker compose
-        run: docker-compose -f ${GITHUB_WORKSPACE}/.github/docker-compose.test.yml up
+        run: docker-compose -f ${GITHUB_WORKSPACE}/.github/docker-compose.test.yml up --abort-on-container-exit
