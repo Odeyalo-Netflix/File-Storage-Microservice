@@ -3,7 +3,6 @@ services:
   file-storage:
     ports:
       - "9000:9000"
-    image: docker-entrypoint-initdb.d/
     build:
       context: .
       dockerfile: Dockerfile.test
