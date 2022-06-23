@@ -3,7 +3,7 @@ services:
   file-storage:
     ports:
       - "9000:9000"
-    image: file-storage-test-image
+    image: docker-entrypoint-initdb.d/
     build:
       context: .
       dockerfile: Dockerfile.test
@@ -13,13 +13,8 @@ services:
         condition: service_healthy
     volumes:
       - "./maven-rep:/root/.m2"
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=root
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - THUMBSNAP_API_KEY=00001b7375a93d52546094c70b9630cb
-      - VIDEO_SAVING_PATH=/odeyalo/dev/microservices/filestorage/videos/
+    env_file:
+      - test.env
 
   db:
     image: 'postgres:13.1-alpine'
