@@ -3,6 +3,7 @@ package com.odeyalo.analog.netflix.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "videos")
@@ -41,6 +42,28 @@ public class Video {
 
     public static VideoBuilder builder() {
         return new VideoBuilder();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Video video = (Video) o;
+        return Objects.equals(id, video.id) && Objects.equals(videoId, video.videoId) && Objects.equals(path, video.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, videoId, path);
+    }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "id='" + id + '\'' +
+                ", videoId='" + videoId + '\'' +
+                ", path='" + path + '\'' +
+                '}';
     }
 
     public static final class VideoBuilder {
