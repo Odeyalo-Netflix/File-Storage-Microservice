@@ -37,6 +37,7 @@ public class LocalVideoUploadService implements VideoUploadService {
             String path = this.storage.save(videoFile);
             Video video = Video.builder().videoId(videoId).path(path).build();
             this.videoRepository.save(video);
+            this.logger.info("Successful saved video: {}", video);
         } catch (IOException | UploadException exception) {
             this.logger.error("Video upload failed. {}, stacktrace: {}", exception.getMessage(), exception.getStackTrace());
             throw new VideoUploadException("We can't process this video");
