@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/v1/video")
+@RequestMapping("/video")
 public class VideoController {
     private final VideoUploadService videoUploadService;
     private final VideoStreamingService<ResponseEntity<ResourceRegion>> streamService;
