@@ -10,8 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 
@@ -21,6 +23,8 @@ public class LocalVideoUploadService implements VideoUploadService {
     private final FileStorage storage;
     private final Logger logger = LoggerFactory.getLogger(LocalVideoUploadService.class);
 
+    @Value("${app.microservices.filestorage.urls.video.stream}")
+    private String VIDEO_STREAM_URL;
     @Autowired
     public LocalVideoUploadService(VideoRepository videoRepository, @Qualifier("localFileStorage") FileStorage storage) {
         this.videoRepository = videoRepository;
@@ -28,7 +32,7 @@ public class LocalVideoUploadService implements VideoUploadService {
     }
 
     @Override
-    public void uploadVideo(MultipartFile videoFile, String videoId) throws VideoUploadException, VideoAlreadyExistException {
+    public String uploadVideo(MultipartFile videoFile, String videoId) throws VideoUploadException, VideoAlreadyExistException {
         boolean isExist = this.videoRepository.findVideoByVideoId(videoId).isPresent();
         if (isExist) {
             throw new VideoAlreadyExistException("Video with id: " + videoId + " already exist");
@@ -37,7 +41,9 @@ public class LocalVideoUploadService implements VideoUploadService {
             String path = this.storage.save(videoFile);
             Video video = Video.builder().videoId(videoId).path(path).build();
             this.videoRepository.save(video);
-            this.logger.info("Successful saved video: {}", video);
+            String url = UriComponentsBuilder.fromUriString(VIDEO_STREAM_URL).queryParam("videoId", videoId).toUriString();
+            this.logger.info("Successful saved video: {}, video stream url: {}", video, url);
+            return url;
         } catch (IOException | UploadException exception) {
             this.logger.error("Video upload failed. {}, stacktrace: {}", exception.getMessage(), exception.getStackTrace());
             throw new VideoUploadException("We can't process this video");
