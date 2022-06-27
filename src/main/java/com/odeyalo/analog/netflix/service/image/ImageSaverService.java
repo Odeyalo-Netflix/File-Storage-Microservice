@@ -9,5 +9,5 @@ public interface ImageSaverService {
 
     void saveUserImage(MultipartFile file, String userId) throws UploadException, IOException;
 
-    void saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException;
+    String saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException;
 }
