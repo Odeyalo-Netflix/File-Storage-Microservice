@@ -1,5 +1,6 @@
 package com.odeyalo.analog.netflix.conrollers;
 
+import com.odeyalo.analog.netflix.dto.response.StreamVideoUrlResponseDTO;
 import com.odeyalo.analog.netflix.exceptions.VideoAlreadyExistException;
 import com.odeyalo.analog.netflix.exceptions.VideoNotFoundException;
 import com.odeyalo.analog.netflix.exceptions.VideoUploadException;
@@ -33,7 +34,7 @@ public class VideoController {
 
     @PostMapping("/upload")
     public ResponseEntity<?> saveVideo(@RequestParam String videoId, @RequestPart(name = "video") MultipartFile file) throws VideoUploadException, VideoAlreadyExistException {
-        this.videoUploadService.uploadVideo(file, videoId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        String url = this.videoUploadService.uploadVideo(file, videoId);
+        return new ResponseEntity<>(new StreamVideoUrlResponseDTO(url), HttpStatus.OK);
     }
 }

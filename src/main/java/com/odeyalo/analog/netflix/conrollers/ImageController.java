@@ -1,5 +1,6 @@
 package com.odeyalo.analog.netflix.conrollers;
 
+import com.odeyalo.analog.netflix.dto.response.ImageUrlResponseDTO;
 import com.odeyalo.analog.netflix.dto.response.UserImagesResponseDTO;
 import com.odeyalo.analog.netflix.exceptions.ImageNotReadableException;
 import com.odeyalo.analog.netflix.exceptions.UploadException;
@@ -46,9 +47,9 @@ public class ImageController {
 
     @PostMapping("/save/poster")
     public ResponseEntity<?> savePoster(@RequestPart MultipartFile file, String posterId) throws IOException, UploadException {
-        this.imageManager.saveVideoImage(file, posterId);
         this.logger.info("Type: {}", file.getContentType());
-        return ResponseEntity.ok().build();
+        String imageUrl = this.imageManager.saveVideoImage(file, posterId);
+        return ResponseEntity.ok().body(new ImageUrlResponseDTO(imageUrl));
     }
 
 

@@ -35,7 +35,7 @@ public class ThumbsnapRemoteImageSaverService implements ImageSaverService {
     }
 
     @Override
-    public void saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException {
+    public String saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException {
         String path = this.fileStorage.save(file);
         Image image = Image.builder()
                 .remoteImageId(remoteImageId)
@@ -43,5 +43,6 @@ public class ThumbsnapRemoteImageSaverService implements ImageSaverService {
                 .path(path)
                 .build();
         this.imageRepository.save(image);
+        return path;
     }
 }

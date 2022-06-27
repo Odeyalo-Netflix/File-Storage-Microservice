@@ -47,8 +47,8 @@ public class RemoteImageManager implements ImageManager {
     }
 
     @Override
-    public void saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException {
-        this.imageSaverService.saveVideoImage(file, remoteImageId);
+    public String saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException {
+        return this.imageSaverService.saveVideoImage(file, remoteImageId);
     }
 
     @Override

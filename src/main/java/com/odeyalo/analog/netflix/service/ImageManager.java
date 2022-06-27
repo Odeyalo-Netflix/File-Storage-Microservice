@@ -14,7 +14,7 @@ public interface ImageManager {
 
     void saveUserImage(MultipartFile file, String userId) throws UploadException, IOException;
 
-    void saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException;
+    String saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException;
 
     Resource getImageById(String imageId) throws ImageNotFoundException, IOException, ImageNotReadableException;
 
