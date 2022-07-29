@@ -8,21 +8,20 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 
 public interface ImageManager {
-
-    void saveUserImage(MultipartFile file, String userId) throws UploadException, IOException;
-
-    String saveVideoImage(MultipartFile file, String remoteImageId) throws UploadException, IOException;
+    /**
+     *
+     * @param file - file to save
+     * @return - unique image id
+     * @throws UploadException - if image uploading failed
+     * @throws IOException - if cannot process image and save it
+     */
+    String saveImage(MultipartFile file) throws UploadException, IOException;
 
     Resource getImageById(String imageId) throws ImageNotFoundException, IOException, ImageNotReadableException;
 
-    List<String> getImagesByUserId(String userId) throws ImageNotFoundException, ImageNotReadableException;
-
     Resource changeImageSize(String imageId, Integer height, Integer width) throws IOException, ImageNotReadableException;
-
-    Resource getImageByRemoteImageId(String remoteImageId) throws ImageNotReadableException, IOException;
 
     void compressImage(Image image);
 }
