@@ -1,7 +1,5 @@
 package com.odeyalo.analog.netflix.service.size.image.compressor;
 
-import com.odeyalo.analog.netflix.service.storage.FileStorage;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.IIOImage;
@@ -16,11 +14,6 @@ import java.util.Iterator;
 @Component
 public class DefaultImageSizeCompressorResolver implements SizeCompressorResolver {
     public static final boolean CREATE_FOLDER_ON_FILE_SAVING = true;
-    private final FileStorage fileStorage;
-
-    public DefaultImageSizeCompressorResolver(@Qualifier("thumbsnapSiteRemoteDiskFileStorage") FileStorage fileStorage) {
-        this.fileStorage = fileStorage;
-    }
 
     @Override
     public String compress(InputStream stream) throws IOException {

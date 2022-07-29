@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 class DefaultImageSizeCompressorResolverTest {
-    DefaultImageSizeCompressorResolver resolver = new DefaultImageSizeCompressorResolver(null);
 
     @Test
     void changeQuality() throws IOException {
