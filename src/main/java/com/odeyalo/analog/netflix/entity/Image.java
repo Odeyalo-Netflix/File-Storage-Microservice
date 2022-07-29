@@ -12,8 +12,6 @@ public class Image {
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
-    private String userId;
-    private String remoteImageId;
     private String path;
     private ImageStorageType type;
 
@@ -23,14 +21,6 @@ public class Image {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getRemoteImageId() {
-        return remoteImageId;
-    }
-
-    public void setRemoteImageId(String remoteImageId) {
-        this.remoteImageId = remoteImageId;
     }
 
     public String getPath() {
@@ -53,19 +43,18 @@ public class Image {
         return new ImageBuilder();
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
+    @Override
+    public String toString() {
+        return "Image{" +
+                "id='" + id + '\'' +
+                ", path='" + path + '\'' +
+                ", type=" + type +
+                '}';
     }
 
     public static final class ImageBuilder {
         private String id;
-        private String userId;
         private String path;
-        private String remoteImageId;
         private ImageStorageType type;
 
         private ImageBuilder() {
@@ -74,16 +63,6 @@ public class Image {
 
         public ImageBuilder id(String id) {
             this.id = id;
-            return this;
-        }
-
-        public ImageBuilder userId(String userId) {
-            this.userId = userId;
-            return this;
-        }
-
-        public ImageBuilder remoteImageId(String remoteImageId) {
-            this.remoteImageId = remoteImageId;
             return this;
         }
 
@@ -100,8 +79,6 @@ public class Image {
         public Image build() {
             Image image = new Image();
             image.setId(id);
-            image.setRemoteImageId(remoteImageId);
-            image.setUserId(userId);
             image.setPath(path);
             image.setType(type);
             return image;
