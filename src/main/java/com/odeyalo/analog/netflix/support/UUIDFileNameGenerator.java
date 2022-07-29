@@ -1,4 +1,4 @@
-package com.odeyalo.analog.netflix.service.support;
+package com.odeyalo.analog.netflix.support;
 
 import org.springframework.stereotype.Component;
 
