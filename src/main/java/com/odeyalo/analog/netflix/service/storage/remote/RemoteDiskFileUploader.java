@@ -1,9 +1,9 @@
 package com.odeyalo.analog.netflix.service.storage.remote;
 
 import com.odeyalo.analog.netflix.dto.enums.RemoteDiskType;
-import com.odeyalo.analog.netflix.service.storage.FileStorage;
+import com.odeyalo.analog.netflix.service.storage.FileUploader;
 
-public interface RemoteDiskFileStorage extends FileStorage {
+public interface RemoteDiskFileUploader extends FileUploader {
 
     RemoteDiskType getRemoteDiskType();
 

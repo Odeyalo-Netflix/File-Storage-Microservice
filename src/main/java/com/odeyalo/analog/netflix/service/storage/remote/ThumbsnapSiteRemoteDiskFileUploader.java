@@ -1,6 +1,5 @@
 package com.odeyalo.analog.netflix.service.storage.remote;
 
-import com.odeyalo.analog.netflix.dto.api.GenericThumbsnapMessageDTO;
 import com.odeyalo.analog.netflix.dto.api.ImageUploadedSuccessThumbsnapApiResponseDTO;
 import com.odeyalo.analog.netflix.dto.enums.RemoteDiskType;
 import com.odeyalo.analog.netflix.exceptions.ImageUploadProcessFailedException;
@@ -23,17 +22,17 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Service
-public class ThumbsnapSiteRemoteDiskFileStorage implements RemoteDiskFileStorage {
+public class ThumbsnapSiteRemoteDiskFileUploader implements RemoteDiskFileUploader {
     private static final String THUMBSNAP_SAVE_FILE_URL_VALUE = "https://thumbsnap.com/api/upload";
     private final RestTemplate restTemplate;
     private static final String UPLOAD_FILE_KEY = "media";
     private static final String TOKEN_KEY = "key";
     @Value("${app.file.saving.remote.thumbsnap.api.key}")
     private String apiKey;
-    private final Logger logger = LoggerFactory.getLogger(ThumbsnapSiteRemoteDiskFileStorage.class);
+    private final Logger logger = LoggerFactory.getLogger(ThumbsnapSiteRemoteDiskFileUploader.class);
 
     @Autowired
-    public ThumbsnapSiteRemoteDiskFileStorage(RestTemplate restTemplate) {
+    public ThumbsnapSiteRemoteDiskFileUploader(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

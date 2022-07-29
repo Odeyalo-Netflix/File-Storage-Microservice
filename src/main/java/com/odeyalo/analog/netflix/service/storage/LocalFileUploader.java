@@ -1,6 +1,6 @@
 package com.odeyalo.analog.netflix.service.storage;
 
-import com.odeyalo.analog.netflix.service.support.FileNameGenerator;
+import com.odeyalo.analog.netflix.support.FileNameGenerator;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,13 +13,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Component
-public class LocalFileStorage implements FileStorage {
+public class LocalFileUploader implements FileUploader {
     private final FileNameGenerator fileNameGenerator;
-    private final Logger logger = LoggerFactory.getLogger(LocalFileStorage.class);
+    private final Logger logger = LoggerFactory.getLogger(LocalFileUploader.class);
     @Value("${app.file.saving.default}")
     private String FOLDER_NAME;
 
-    public LocalFileStorage(FileNameGenerator fileNameGenerator) {
+    public LocalFileUploader(FileNameGenerator fileNameGenerator) {
         this.fileNameGenerator = fileNameGenerator;
     }
 
