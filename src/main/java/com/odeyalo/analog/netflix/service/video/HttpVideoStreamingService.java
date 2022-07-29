@@ -30,7 +30,7 @@ public class HttpVideoStreamingService implements VideoStreamingService<Response
 
     @Override
     public ResponseEntity<ResourceRegion> stream(String videoId, String rangeHeader) throws VideoNotFoundException, IOException {
-        Video video = this.videoRepository.findVideoByVideoId(videoId).orElseThrow(VideoNotFoundException::new);
+        Video video = this.videoRepository.findVideoById(videoId).orElseThrow(VideoNotFoundException::new);
         String path = video.getPath();
         FileUrlResource resource = new FileUrlResource(path);
         ResourceRegion resourceRegion = getResourceRegion(resource, rangeHeader);
