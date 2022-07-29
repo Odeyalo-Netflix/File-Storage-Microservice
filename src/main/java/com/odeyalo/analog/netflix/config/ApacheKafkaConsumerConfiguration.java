@@ -1,10 +1,9 @@
 package com.odeyalo.analog.netflix.config;
 
 import com.odeyalo.analog.netflix.dto.Base64ImageDTO;
-import com.odeyalo.analog.netflix.dto.ImageResizeDTO;
+import com.odeyalo.analog.netflix.dto.VideoUploadedSuccessMessageDTO;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
-import org.apache.kafka.common.serialization.BytesDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +13,6 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 
@@ -45,6 +43,11 @@ public class ApacheKafkaConsumerConfiguration {
     @Bean
     public ConsumerFactory<String, byte[]> imageCompressConsumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfig(), new StringDeserializer(), new ByteArrayDeserializer());
+    }
+
+    @Bean
+    public ConsumerFactory<String, VideoUploadedSuccessMessageDTO> videoUploadProcessResponseDTOConsumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfig(), new StringDeserializer(), new JsonDeserializer<>(VideoUploadedSuccessMessageDTO.class));
     }
 
     private HashMap<String, Object> consumerConfig() {

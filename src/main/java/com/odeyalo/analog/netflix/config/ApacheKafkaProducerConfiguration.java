@@ -1,9 +1,9 @@
 package com.odeyalo.analog.netflix.config;
 
 import com.odeyalo.analog.netflix.dto.ImageResizeDTO;
+import com.odeyalo.analog.netflix.dto.VideoUploadedSuccessMessageDTO;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
@@ -24,6 +24,16 @@ public class ApacheKafkaProducerConfiguration {
 
     @Bean
     public KafkaTemplate<String, ImageResizeDTO> kafkaTemplate(ProducerFactory<String, ImageResizeDTO> factory) {
+        return new KafkaTemplate<>(factory);
+    }
+
+    @Bean
+    public ProducerFactory<String, VideoUploadedSuccessMessageDTO> videoUploadedSuccessMessageDTOProducerFactory() {
+        return new DefaultKafkaProducerFactory<>(producerConfig());
+    }
+
+    @Bean
+    public KafkaTemplate<String, VideoUploadedSuccessMessageDTO> videoUploadedSuccessMessageDTOKafkaTemplate(ProducerFactory<String, VideoUploadedSuccessMessageDTO> factory) {
         return new KafkaTemplate<>(factory);
     }
 
