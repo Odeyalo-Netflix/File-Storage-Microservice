@@ -1,29 +1,32 @@
 package com.odeyalo.analog.netflix.conrollers;
 
-import com.odeyalo.analog.netflix.dto.response.StreamVideoUrlResponseDTO;
+import com.odeyalo.analog.netflix.annotation.ValidVideoFIle;
 import com.odeyalo.analog.netflix.exceptions.VideoAlreadyExistException;
 import com.odeyalo.analog.netflix.exceptions.VideoNotFoundException;
 import com.odeyalo.analog.netflix.exceptions.VideoUploadException;
 import com.odeyalo.analog.netflix.service.video.VideoStreamingService;
-import com.odeyalo.analog.netflix.service.video.VideoUploadService;
+import com.odeyalo.analog.netflix.service.video.facade.KafkaEventPublisherVideoSaverServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.support.ResourceRegion;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/video")
+@Validated
 public class VideoController {
-    private final VideoUploadService videoUploadService;
+    private final KafkaEventPublisherVideoSaverServiceFacade videoSaverService;
     private final VideoStreamingService<ResponseEntity<ResourceRegion>> streamService;
 
     @Autowired
-    public VideoController(VideoUploadService videoUploadService, VideoStreamingService<ResponseEntity<ResourceRegion>> streamService) {
-        this.videoUploadService = videoUploadService;
+    public VideoController(KafkaEventPublisherVideoSaverServiceFacade videoSaverService, VideoStreamingService<ResponseEntity<ResourceRegion>> streamService) {
+        this.videoSaverService = videoSaverService;
         this.streamService = streamService;
     }
 
@@ -33,8 +36,11 @@ public class VideoController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<?> saveVideo(@RequestParam String videoId, @RequestPart(name = "video") MultipartFile file) throws VideoUploadException, VideoAlreadyExistException {
-        String url = this.videoUploadService.uploadVideo(file, videoId);
-        return new ResponseEntity<>(new StreamVideoUrlResponseDTO(url), HttpStatus.OK);
+    public ResponseEntity<?> saveVideo(@ValidVideoFIle @RequestPart(name = "video") MultipartFile file) throws VideoUploadException, VideoAlreadyExistException {
+        String id = this.videoSaverService.uploadVideo(file);
+        String s = MvcUriComponentsBuilder.fromMethodName(VideoController.class, "streamVideo", id, 0).build().toString();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("videoId", s);
+        return ResponseEntity.ok(map);
     }
 }
