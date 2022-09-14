@@ -1,4 +1,4 @@
-package com.odeyalo.analog.netflix.service;
+package com.odeyalo.analog.netflix.service.image;
 
 import com.odeyalo.analog.netflix.entity.Image;
 import com.odeyalo.analog.netflix.exceptions.ImageNotReadableException;
@@ -49,7 +49,7 @@ public abstract class AbstractImageManager implements ImageManager {
             File file = new File(path);
             return ImageIO.read(file);
         } catch (IOException exception) {
-            this.logger.trace("Stacktrace: ", exception);
+            this.logger.error("Stacktrace: ", exception);
             throw new ImageNotReadableException("Image cannot be read.");
         }
     }

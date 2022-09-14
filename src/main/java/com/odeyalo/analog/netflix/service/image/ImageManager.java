@@ -1,4 +1,4 @@
-package com.odeyalo.analog.netflix.service;
+package com.odeyalo.analog.netflix.service.image;
 
 import com.odeyalo.analog.netflix.entity.Image;
 import com.odeyalo.analog.netflix.exceptions.ImageNotFoundException;
@@ -24,4 +24,6 @@ public interface ImageManager {
     Resource changeImageSize(String imageId, Integer height, Integer width) throws IOException, ImageNotReadableException;
 
     void compressImage(Image image);
+
+    void deleteImage(String imageId);
 }

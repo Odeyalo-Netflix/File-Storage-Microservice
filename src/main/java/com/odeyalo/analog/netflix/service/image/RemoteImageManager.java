@@ -1,4 +1,4 @@
-package com.odeyalo.analog.netflix.service;
+package com.odeyalo.analog.netflix.service.image;
 
 import com.odeyalo.analog.netflix.entity.Image;
 import com.odeyalo.analog.netflix.entity.ImageStorageType;
@@ -6,7 +6,6 @@ import com.odeyalo.analog.netflix.exceptions.ImageNotFoundException;
 import com.odeyalo.analog.netflix.exceptions.ImageNotReadableException;
 import com.odeyalo.analog.netflix.exceptions.UploadException;
 import com.odeyalo.analog.netflix.repository.ImageRepository;
-import com.odeyalo.analog.netflix.service.image.ImageSaverService;
 import com.odeyalo.analog.netflix.service.size.ImageResizer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
@@ -42,7 +41,7 @@ public class RemoteImageManager extends AbstractImageManager {
         Image image = this.imageRepository.findById(imageId).orElseThrow(() -> {
             throw new ImageNotFoundException("Image with id: " + imageId + " was not found");
         });
-        if (image.getType() == ImageStorageType.REMOTE) {
+        if (image.getStorageType() == ImageStorageType.REMOTE) {
             return new UrlResource(image.getPath());
         }
         this.logger.info("Reading image from path: {}", image.getPath());
@@ -63,5 +62,10 @@ public class RemoteImageManager extends AbstractImageManager {
 
     @Override
     public void compressImage(Image image) {
+    }
+
+    @Override
+    public void deleteImage(String imageId) {
+
     }
 }
