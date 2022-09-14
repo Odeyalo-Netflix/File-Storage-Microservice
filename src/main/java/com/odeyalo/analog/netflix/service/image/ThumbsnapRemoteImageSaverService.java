@@ -29,15 +29,16 @@ public class ThumbsnapRemoteImageSaverService implements ImageSaverService {
     public Image saveImage(MultipartFile file) throws UploadException {
         try {
             String path = this.fileUploader.save(file);
-            Image image = this.imageRepository.save(Image.builder()
-                    .path(path)
-                    .type(ImageStorageType.REMOTE)
-                    .build());
+            Image imageToSave = Image.builder().path(path).fileCreated(toUnixTimestamp()).storageType(ImageStorageType.REMOTE).size(file.getSize()).build();
+            Image image = this.imageRepository.save(imageToSave);
             this.logger.info("Saved image {}", image);
             return image;
         } catch (IOException ex) {
             this.logger.error("File upload: {} has been failed.", file.getOriginalFilename(), ex);
             throw new UploadException(String.format("Cannot upload file %s, please try again later", file.getName()));
         }
+    }
+    protected Long toUnixTimestamp() {
+        return System.currentTimeMillis() / 1000;
     }
 }
