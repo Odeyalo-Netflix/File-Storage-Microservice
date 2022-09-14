@@ -1,10 +1,9 @@
 package com.odeyalo.analog.netflix.service.video.facade;
 
-import com.odeyalo.analog.netflix.dto.VideoUploadedSuccessMessageDTO;
 import com.odeyalo.analog.netflix.exceptions.VideoAlreadyExistException;
 import com.odeyalo.analog.netflix.exceptions.VideoUploadException;
 import com.odeyalo.analog.netflix.service.video.VideoSaverService;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import com.odeyalo.support.clients.filestorage.dto.VideoUploadedSuccessMessageDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
