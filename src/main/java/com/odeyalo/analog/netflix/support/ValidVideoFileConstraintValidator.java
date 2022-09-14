@@ -18,6 +18,7 @@ public class ValidVideoFileConstraintValidator implements ConstraintValidator<Va
         this.mimeTypes.add("application/x-mpegURL");
         this.mimeTypes.add("video/MP2T");
         this.mimeTypes.add("video/3gpp");
+        this.mimeTypes.add("video/webm");
         this.mimeTypes.add("video/quicktime");
         this.mimeTypes.add("video/x-msvideo");
         this.mimeTypes.add("video/x-ms-wmv");
