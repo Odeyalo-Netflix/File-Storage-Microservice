@@ -6,6 +6,7 @@ import com.odeyalo.analog.netflix.exceptions.VideoAlreadyExistException;
 import com.odeyalo.analog.netflix.exceptions.VideoUploadException;
 import com.odeyalo.analog.netflix.repository.VideoRepository;
 import com.odeyalo.analog.netflix.service.storage.FileUploader;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,13 @@ public class LocalVideoSaverService implements VideoSaverService {
     public String uploadVideo(MultipartFile videoFile) throws VideoUploadException {
         try {
             String path = this.storage.save(videoFile);
-            Video video = Video.builder().path(path).build();
+            Video video = Video
+                    .builder()
+                    .fileCreated(toUnixTimestamp())
+                    .size(videoFile.getSize())
+                    .type(FilenameUtils.getExtension(path))
+                    .path(path)
+                    .build();
             Video savedVideo = this.videoRepository.save(video);
             String videoId = savedVideo.getId();
             this.logger.info("Saved video from file: {}, video id: {}", videoFile, videoId);
@@ -41,4 +48,8 @@ public class LocalVideoSaverService implements VideoSaverService {
             throw new VideoUploadException("We can't process this video");
         }
     }
+    protected Long toUnixTimestamp() {
+        return System.currentTimeMillis() / 1000;
+    }
+
 }
