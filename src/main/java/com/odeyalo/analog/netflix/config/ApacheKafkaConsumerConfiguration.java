@@ -1,7 +1,7 @@
 package com.odeyalo.analog.netflix.config;
 
 import com.odeyalo.analog.netflix.dto.Base64ImageDTO;
-import com.odeyalo.analog.netflix.dto.VideoUploadedSuccessMessageDTO;
+import com.odeyalo.support.clients.filestorage.dto.VideoUploadedSuccessMessageDTO;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
