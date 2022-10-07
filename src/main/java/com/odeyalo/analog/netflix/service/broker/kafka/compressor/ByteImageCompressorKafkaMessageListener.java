@@ -1,7 +1,7 @@
 package com.odeyalo.analog.netflix.service.broker.kafka.compressor;
 
 import com.odeyalo.analog.netflix.service.broker.kafka.KafkaMessageListener;
-import com.odeyalo.analog.netflix.service.size.image.compressor.SizeCompressorResolver;
+import com.odeyalo.analog.netflix.service.image.size.compressor.SizeCompressorResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;

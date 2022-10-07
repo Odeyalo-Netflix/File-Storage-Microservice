@@ -6,7 +6,7 @@ import com.odeyalo.analog.netflix.exceptions.ImageNotFoundException;
 import com.odeyalo.analog.netflix.exceptions.ImageNotReadableException;
 import com.odeyalo.analog.netflix.exceptions.UploadException;
 import com.odeyalo.analog.netflix.repository.ImageRepository;
-import com.odeyalo.analog.netflix.service.size.ImageResizer;
+import com.odeyalo.analog.netflix.service.image.size.ImageResizer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
