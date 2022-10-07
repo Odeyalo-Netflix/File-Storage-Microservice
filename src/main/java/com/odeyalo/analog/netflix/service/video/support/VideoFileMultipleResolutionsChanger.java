@@ -1,7 +1,7 @@
 package com.odeyalo.analog.netflix.service.video.support;
 
 import com.odeyalo.analog.netflix.service.files.ResizedFileSavingResult;
-import com.odeyalo.analog.netflix.service.files.VideoResolution;
+import com.odeyalo.support.clients.filestorage.dto.VideoResolution;
 
 import java.util.List;
 
