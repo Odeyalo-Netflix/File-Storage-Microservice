@@ -6,7 +6,7 @@ import com.odeyalo.analog.netflix.exceptions.ImageNotFoundException;
 import com.odeyalo.analog.netflix.exceptions.ImageNotReadableException;
 import com.odeyalo.analog.netflix.exceptions.UploadException;
 import com.odeyalo.analog.netflix.repository.ImageRepository;
-import com.odeyalo.analog.netflix.service.size.ImageResizer;
+import com.odeyalo.analog.netflix.service.image.size.ImageResizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
@@ -59,7 +59,10 @@ public class LocalImageManager extends AbstractImageManager {
 
     @Override
     public Resource changeImageSize(String imageId, Integer height, Integer width) throws IOException, ImageNotReadableException {
-        return null;
+        Image image = this.imageRepository.findById(imageId).orElseThrow(() -> new RuntimeException(("No image found")));
+        BufferedImage inputImage = imageToBufferedImage(image);
+        BufferedImage resize = imageResizer.resize(inputImage, width, height);
+        return bufferedImageToResource(resize, image);
     }
 
     @Override
