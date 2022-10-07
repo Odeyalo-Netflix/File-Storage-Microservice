@@ -16,9 +16,10 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 
+import static com.odeyalo.analog.netflix.config.KafkaConfiguration.APACHE_KAFKA_MESSAGE_BROKER_CONNECTION_URL;
+
 @Configuration
 public class ApacheKafkaConsumerConfiguration {
-    private static final String APACHE_KAFKA_MESSAGE_BROKER_CONNECTION_URL = "localhost:9092";
     private static final String APACHE_KAFKA_MESSAGE_BROKER_GROUP_ID_CONFIG = "1";
 
     @Bean
