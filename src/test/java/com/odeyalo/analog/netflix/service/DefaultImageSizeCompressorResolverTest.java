@@ -1,9 +1,7 @@
 package com.odeyalo.analog.netflix.service;
 
-import com.odeyalo.analog.netflix.service.size.image.compressor.DefaultImageSizeCompressorResolver;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 class DefaultImageSizeCompressorResolverTest {

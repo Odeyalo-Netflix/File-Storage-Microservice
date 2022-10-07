@@ -16,4 +16,5 @@ public interface FileUploader {
      */
     String save(MultipartFile file) throws UploadException, IOException;
 
+    String save(File file) throws IOException;
 }

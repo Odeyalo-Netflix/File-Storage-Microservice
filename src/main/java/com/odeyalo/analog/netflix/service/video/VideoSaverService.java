@@ -8,7 +8,7 @@ public interface VideoSaverService {
     /**
      *
      * @param video - video to save
-     * @return - video url or path to streaming
+     * @return - video id
      * @throws VideoUploadException - if some problems was occurred while video upload
      * @throws VideoAlreadyExistException - if video exist
      */

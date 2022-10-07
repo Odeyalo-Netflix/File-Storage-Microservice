@@ -42,7 +42,7 @@ public class ImageController {
     }
 
     @GetMapping(value = "/info/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getImageInfoById(@PathVariable("id") String imageId) throws IOException, ImageNotReadableException {
+    public ResponseEntity<?> getImageInfoById(@PathVariable("id") String imageId) throws IOException {
         FileInformationResponseDTO info = this.fileInformationService.getInformation(imageId);
         return new ResponseEntity<>(info, HttpStatus.OK);
     }

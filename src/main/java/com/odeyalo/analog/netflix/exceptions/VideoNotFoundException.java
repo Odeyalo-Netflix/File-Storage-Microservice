@@ -1,6 +1,6 @@
 package com.odeyalo.analog.netflix.exceptions;
 
-public class VideoNotFoundException extends Exception {
+public class VideoNotFoundException extends RuntimeException {
 
     public VideoNotFoundException() {
         super();

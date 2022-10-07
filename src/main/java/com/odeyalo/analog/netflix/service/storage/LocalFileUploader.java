@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Component
 public class LocalFileUploader implements FileUploader {
@@ -25,16 +27,30 @@ public class LocalFileUploader implements FileUploader {
 
     @Override
     public String save(MultipartFile file) throws IOException {
-        this.logger.info("Start file saving with name: {}", file.getOriginalFilename());
         byte[] bytes = file.getBytes();
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
+        String path = buildAndSave(extension, bytes);
+        this.logger.info("File with name: {} was saved to path {}, file extension: {} ", file.getName(), path, extension);
+        return path;
+    }
+
+    @Override
+    public String save(File file) throws IOException {
+        String absolutePath = file.getAbsolutePath();
+        byte[] bytes = Files.readAllBytes(Paths.get(absolutePath));
+        String extension = FilenameUtils.getExtension(absolutePath);
+        String path = buildAndSave(extension, bytes);
+        this.logger.info("File with name: {} was saved to path {}, file extension: {} ", file.getName(), path, extension);
+        return path;
+    }
+
+    String buildAndSave(String extension, byte[] bytes) throws IOException {
         String path = new StringBuilder()
                 .append(FOLDER_NAME)
                 .append(fileNameGenerator.generateName())
                 .append(".")
                 .append(extension).toString();
         Files.write(Path.of(path), bytes);
-        this.logger.info("File with name: {} was saved to path {}, file extension: {} ", file.getName(), path, extension);
         return path;
     }
 }

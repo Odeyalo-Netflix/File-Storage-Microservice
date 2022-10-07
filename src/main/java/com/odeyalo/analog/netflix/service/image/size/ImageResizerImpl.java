@@ -1,4 +1,4 @@
-package com.odeyalo.analog.netflix.service.size;
+package com.odeyalo.analog.netflix.service.image.size;
 
 import org.springframework.stereotype.Service;
 

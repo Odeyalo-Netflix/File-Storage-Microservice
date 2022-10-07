@@ -19,6 +19,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 
 @Service
@@ -46,6 +47,11 @@ public class ThumbsnapSiteRemoteDiskFileUploader implements RemoteDiskFileUpload
             return body.getData().getThumb();
         }
         throw new ImageUploadProcessFailedException("Image upload failed. Try again latter");
+    }
+
+    @Override
+    public String save(File file) throws IOException {
+        return null;
     }
 
     @Override

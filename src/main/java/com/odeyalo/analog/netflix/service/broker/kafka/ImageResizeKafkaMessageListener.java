@@ -1,6 +1,5 @@
 package com.odeyalo.analog.netflix.service.broker.kafka;
 
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -14,7 +13,7 @@ public class ImageResizeKafkaMessageListener implements KafkaMessageListener<Str
 //    }
 
     @Override
-    @KafkaListener(topics = "IMAGE_RESOLVER", containerFactory = "kafkaListenerContainerFactory")
+//    @KafkaListener(topics = "IMAGE_RESOLVER", containerFactory = "kafkaListenerContainerFactory")
     public void receiveMessage(String dto) throws IOException {
         System.out.println(dto);
 //        this.changeResolver.changeQuality(dto.getHeight(), dto.getWidth(), dto.getImage().getInputStream());

@@ -1,4 +1,4 @@
-package com.odeyalo.analog.netflix.service.size.image.compressor;
+package com.odeyalo.analog.netflix.service.image.size.compressor;
 
 import org.springframework.stereotype.Component;
 
