@@ -6,7 +6,7 @@ import com.odeyalo.analog.netflix.exceptions.ImageNotFoundException;
 import com.odeyalo.analog.netflix.repository.ImageRepository;
 import com.odeyalo.analog.netflix.service.image.size.ImageResizeData;
 import com.odeyalo.analog.netflix.service.files.ResizedFileSavingResult;
-import com.odeyalo.analog.netflix.service.image.size.MultipleImageResizer;
+import com.odeyalo.analog.netflix.service.image.size.MultipleResolutionsImageResizer;
 import com.odeyalo.analog.netflix.support.events.Event;
 import com.odeyalo.analog.netflix.support.events.OriginalImageSavedEvent;
 import org.apache.commons.io.FileUtils;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class OriginalImageSavedEventHandler implements EventHandler {
-    private final MultipleImageResizer resizer;
+    private final MultipleResolutionsImageResizer resizer;
     private final ImageRepository imageRepository;
     private final Logger logger = LoggerFactory.getLogger(OriginalImageSavedEventHandler.class);
     private final TransactionTemplate template;
@@ -41,7 +41,7 @@ public class OriginalImageSavedEventHandler implements EventHandler {
     );
 
     @Autowired
-    public OriginalImageSavedEventHandler(MultipleImageResizer resizer, ImageRepository imageRepository, TransactionTemplate template) {
+    public OriginalImageSavedEventHandler(MultipleResolutionsImageResizer resizer, ImageRepository imageRepository, TransactionTemplate template) {
         this.resizer = resizer;
         this.imageRepository = imageRepository;
         this.template = template;
