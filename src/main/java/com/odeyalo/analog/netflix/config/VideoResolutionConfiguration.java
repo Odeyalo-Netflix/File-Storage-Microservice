@@ -1,6 +1,6 @@
 package com.odeyalo.analog.netflix.config;
 
-import com.odeyalo.analog.netflix.service.files.VideoResolution;
+import com.odeyalo.support.clients.filestorage.dto.VideoResolution;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

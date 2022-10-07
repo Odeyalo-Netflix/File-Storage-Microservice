@@ -1,10 +1,10 @@
 package com.odeyalo.analog.netflix.service.video.support;
 
 import com.odeyalo.analog.netflix.service.files.ResizedFileSavingResult;
-import com.odeyalo.analog.netflix.service.files.VideoResolution;
 import com.odeyalo.analog.netflix.service.storage.FileUploader;
 import com.odeyalo.analog.netflix.service.storage.FileUploaderFactory;
 import com.odeyalo.analog.netflix.service.video.VideoFileResolutionChanger;
+import com.odeyalo.support.clients.filestorage.dto.VideoResolution;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;

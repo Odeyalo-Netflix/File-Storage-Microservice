@@ -16,12 +16,12 @@ public class DefaultKafkaAdminClient implements KafkaAdminClient {
 
     public DefaultKafkaAdminClient(String bootstrap) {
         this.properties = new Properties();
-        properties.put("bootstrap.servers", bootstrap);
+        properties.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrap);
         properties.put(AdminClientConfig.RETRY_BACKOFF_MS_CONFIG, 7000);
         properties.put(AdminClientConfig.REQUEST_TIMEOUT_MS_CONFIG, 5000);
         properties.put(AdminClientConfig.DEFAULT_API_TIMEOUT_MS_CONFIG, 5000);
         properties.put(AdminClientConfig.RECONNECT_BACKOFF_MS_CONFIG, 10000);
-        properties.put("connections.max.idle.ms", 5000);
+        properties.put(AdminClientConfig.CONNECTIONS_MAX_IDLE_MS_CONFIG, 5000);
         this.client = Admin.create(properties);
     }
 
