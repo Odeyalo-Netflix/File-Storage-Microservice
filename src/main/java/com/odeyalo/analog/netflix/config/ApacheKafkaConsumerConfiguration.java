@@ -16,7 +16,6 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 
-import static com.odeyalo.analog.netflix.config.KafkaConfiguration.APACHE_KAFKA_MESSAGE_BROKER_CONNECTION_URL;
 
 @Configuration
 public class ApacheKafkaConsumerConfiguration {
@@ -53,7 +52,7 @@ public class ApacheKafkaConsumerConfiguration {
 
     private HashMap<String, Object> consumerConfig() {
         HashMap<String, Object> config = new HashMap<>(5);
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, APACHE_KAFKA_MESSAGE_BROKER_CONNECTION_URL);
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConfiguration.getConnectionUrl());
         config.put(ConsumerConfig.GROUP_ID_CONFIG, APACHE_KAFKA_MESSAGE_BROKER_GROUP_ID_CONFIG);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonSerializer.class);
