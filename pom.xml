@@ -18,6 +18,12 @@
         <spring-cloud.version>2021.0.1</spring-cloud.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/Odeyalo-Netflix/Feign-Clients/mvn-repo/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
