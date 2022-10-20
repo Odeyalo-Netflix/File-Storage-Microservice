@@ -70,9 +70,9 @@ if docker network ls | grep -q "$network_name"; then
   else
     logInfo "Reuse existing one"
   fi
-  else
-        docker network create "$network_name"
-        logInfo "Created docker network: $network_name since it doesn't exist"
+else
+  docker network create "$network_name"
+  logInfo "Created docker network: $network_name since it doesn't exist"
 fi
 
 #Bootstrap postgres in docker.
