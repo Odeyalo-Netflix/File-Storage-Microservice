@@ -2,51 +2,23 @@ version: '2.2'
 services:
   file-storage:
     ports:
-      - "9000:9000"
+      - "8090:8090"
     build:
       context: .
     container_name: file-storage
-    depends_on:
-      db:
-        condition: service_healthy
     volumes:
       - "./maven-rep:/root/.m2"
       - "D:/odeyalo/dev/microservices/filestorage/videos:/odeyalo/dev/microservices/filestorage/videos"
+      - "D:/odeyalo/dev/microservices/filestorage/videos:/odeyalo/dev/microservices/filestorage/videos/temp"
+      - "D:/odeyalo/dev/microservices/filestorage/images:/odeyalo/dev/microservices/filestorage/images"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=root
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - THUMBSNAP_API_KEY=00001b7375a93d52546094c70b9630cb
-      - VIDEO_SAVING_PATH=/odeyalo/dev/microservices/filestorage/videos/
-
-  auth-microservice:
-    ports:
-      - "8761:8761"
-    build:
-      context: .
-    container_name: auth-microservice
-    depends_on:
-      db:
-        condition: service_healthy
+      ACCESS_TOKEN: ${ACCESS_TOKEN}
     env_file:
       - local.env
-    volumes:
-      - "./maven-rep:/root/.m2"
+    networks:
+      - netflix
 
 
-  db:
-    image: 'postgres:13.1-alpine'
-    container_name: db
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
-    volumes:
-      - "D:/odeyalo/dev/microservices/db:/var/lib/postgresql/data"
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+networks:
+  netflix:
+    external: true

@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.FileNotFoundException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -46,6 +48,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(VideoUploadException.class)
     public ResponseEntity<ExceptionOccurredMessageDTO> handleVideoNotFoundException(VideoUploadException e) {
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<ExceptionOccurredMessageDTO> handleFileNotFoundException(FileNotFoundException ex) {
+        return buildResponse(HttpStatus.NOT_FOUND.toString(), "The requested file is not presented on the server", HttpStatus.NOT_FOUND);
     }
 
 

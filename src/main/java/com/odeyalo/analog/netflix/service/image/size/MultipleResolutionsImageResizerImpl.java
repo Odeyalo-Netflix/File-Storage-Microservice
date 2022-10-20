@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -44,8 +45,10 @@ public class MultipleResolutionsImageResizerImpl implements MultipleResolutionsI
                 ResizedFileSavingResult resizedFileSavingResult = new ResizedFileSavingResult(resizeData.getWidth(), resizeData.getHeight(), file.getAbsolutePath(), result);
                 results.add(resizedFileSavingResult);
                 this.logger.info("Saved image with name: {} and result: {}", file.getAbsolutePath(), result);
-            } catch (Exception ex) {
+            } catch (IOException ex) {
                 this.logger.error("Exception during file saving", ex);
+                ResizedFileSavingResult resizedFileSavingResult = new ResizedFileSavingResult(resizeData.getWidth(), resizeData.getHeight(), null, false);
+                results.add(resizedFileSavingResult);
             }
         }
         return results;
