@@ -4,7 +4,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: checkout check
+          uses: actions/checkout@v2
       - name: Cache local Maven repository
         id: cache-primes
         uses: actions/cache@v3
