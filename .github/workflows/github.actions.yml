@@ -4,15 +4,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout check
-          uses: actions/checkout@v2
-      - name: Cache local Maven repository
-        id: cache-primes
-        uses: actions/cache@v3
-          with:
-            path: ~/.m2/repository
-            key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-            restore-keys: |
-              ${{ runner.os }}-maven-
+      - uses: actions/checkout@v2
+      - uses: satackey/action-docker-layer-caching@v0.0.11
       - name: Build docker compose
         run: docker-compose -f ${GITHUB_WORKSPACE}/docker-compose.test.yml up --abort-on-container-exit
