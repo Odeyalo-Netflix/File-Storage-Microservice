@@ -14,15 +14,11 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-/maven-rep/**
-*.logs
-*.log
-*.gz
 .idea
 *.iws
 *.iml
 *.ipr
-
+/maven-rep/**
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -32,6 +28,8 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+mvnw
+mvnw.cmd
+.mvn
 ### VS Code ###
 .vscode/
