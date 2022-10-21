@@ -2,7 +2,7 @@ name: file-storage
 on: [ push, pull_request ]
 
 env:
-  ACCESS_TOKEN: ${{ secrets.pritn }}
+  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
   test:
