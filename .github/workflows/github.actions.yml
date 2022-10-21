@@ -1,6 +1,9 @@
 name: file-storage
 on: [ push, pull_request ]
 
+env:
+  ACCESS_TOKEN: ${{ secrets.pritn }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
